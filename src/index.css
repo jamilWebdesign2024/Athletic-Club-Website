@@ -1,0 +1,229 @@
+@import "tailwindcss";
+
+@plugin "daisyui" {
+    themes: light --default, dark --prefersdark;
+}
+
+
+:root {
+    /* 🎨 Professional Color Scheme */
+    --color-primary: #4F46E5;
+    /* Deep indigo */
+    --color-primary-light: #6366F1;
+    /* Lighter indigo */
+    --color-secondary: #EC4899;
+    /* Elegant pink */
+    --color-accent: #10B981;
+    /* Emerald green */
+
+    /* Neutral Colors */
+    --color-dark: #111827;
+    /* Dark slate */
+    --color-card: #1F2937;
+    /* Card background */
+    --color-card-border: #374151;
+    /* Border color */
+
+    /* Text Colors */
+    --color-text-main: #F9FAFB;
+    /* Lightest gray */
+    --color-text-secondary: #E5E7EB;
+    /* Lighter gray */
+    --color-text-muted: #9CA3AF;
+    /* Muted text */
+
+    /* Status Colors */
+    --color-success: #10B981;
+    /* Green */
+    --color-warning: #F59E0B;
+    /* Amber */
+    --color-error: #EF4444;
+    /* Red */
+
+    /* Font Sizes */
+    --font-size-title: 1.75rem;
+    --font-size-subtitle: 1.25rem;
+    --font-size-large: 1.125rem;
+    --font-size-medium: 1rem;
+    --font-size-small: 0.875rem;
+
+    /* Spacing */
+    --card-padding: 1.25rem;
+    --card-radius: 0.75rem;
+    --btn-padding-y: 0.625rem;
+    --btn-padding-x: 1.25rem;
+    --btn-radius: 0.5rem;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== BASE STYLES ===== */
+body {
+    background-color: var(--color-dark);
+    color: var(--color-text-main);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ===== TYPOGRAPHY ===== */
+.text-primary {
+    color: var(--color-primary);
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    @apply inline-flex items-center justify-center;
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    border-radius: var(--btn-radius);
+    font-weight: 600;
+    font-size: var(--font-size-medium);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-light);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+    border: 1px solid var(--color-card-border);
+    color: var(--color-text-main);
+    background-color: transparent;
+}
+
+.btn-outline:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    @apply sticky top-0 z-50 w-full;
+    background-color: rgba(31, 41, 55, 0.8);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-card-border);
+    height: 5rem;
+}
+
+.navbar-container {
+    @apply max-w-7xl mx-auto px-6;
+    height: 100%;
+}
+
+.navbar-brand {
+    @apply text-2xl font-bold;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.025em;
+}
+
+.navbar-item {
+    @apply relative px-3 py-2 font-medium;
+    color: var(--color-text-secondary);
+    transition: all 0.2s ease;
+}
+
+.navbar-item:hover {
+    color: var(--color-text-main);
+}
+
+.navbar-item::after {
+    @apply absolute bottom-0 left-1/2 h-0.5;
+    content: '';
+    width: 0;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.navbar-item:hover::after,
+.navbar-item.active::after {
+    width: calc(100% - 1.5rem);
+}
+
+.navbar-item.active {
+    color: var(--color-text-main);
+}
+
+/* Dropdown Menu */
+.navbar-dropdown {
+    @apply absolute right-0 mt-2 w-56;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--card-radius);
+    box-shadow: var(--shadow-lg);
+    padding: 0.5rem 0;
+    z-index: 50;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    @apply lg:hidden fixed inset-0 z-40;
+    background-color: var(--color-dark);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-out;
+}
+
+.mobile-menu.open {
+    transform: translateX(0);
+}
+
+/* ===== CARD ===== */
+.card {
+    @apply rounded-lg p-6;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-card-border);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ===== UTILITIES ===== */
+.section-padding {
+    @apply py-16 md:py-24;
+}
+
+.container {
+    @apply max-w-7xl mx-auto px-6;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.4s ease-out forwards;
+}
